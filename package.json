@@ -7,11 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "build:gh-pages": "vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:gh-pages": "vite preview --base=/Portfolio-Angel-Moncada/",
     "deploy:check": "node deploy.cjs",
     "deploy:build": "npm run build && npm run deploy:check",
-    "deploy:preview": "npm run build && npm run preview"
+    "deploy:preview": "npm run build && npm run preview",
+    "gh-pages:build": "npm run build:gh-pages",
+    "gh-pages:preview": "npm run build:gh-pages && npm run preview:gh-pages"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
