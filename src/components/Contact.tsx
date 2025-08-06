@@ -29,8 +29,8 @@ const contactMethods = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/angel-moncada',
-    href: 'https://www.linkedin.com/in/angel-moncada',
+    value: 'linkedin.com/in/ángel-moncada-a689882aa',
+    href: 'https://www.linkedin.com/in/ángel-moncada-a689882aa',
     bg: 'bg-blue-800',
     iconColor: 'text-white',
   },
@@ -254,7 +254,7 @@ END:VCARD`;
     const contactText = `Ángel Moncada - Full-Stack Developer\n` +
       `📧 Email: angelfmoncada.m@gmail.com\n` +
       `🔗 GitHub: https://github.com/Angelfmoncada\n` +
-      `💼 LinkedIn: https://www.linkedin.com/in/angel-moncada\n\n` +
+      `💼 LinkedIn: https://www.linkedin.com/in/ángel-moncada-a689882aa\n\n` +
       `Full-stack developer and Systems Engineering student with a passion for clean, efficient and visually appealing solutions.`;
     
     try {

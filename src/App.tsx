@@ -17,7 +17,7 @@ const App = () => (
         <div className="relative z-10">
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.PROD ? '/Portfolio-Angel-Moncada' : ''}>
             <Routes>
               <Route path="/" element={<Index />} />
               {/* <Route path="/blog" element={<BlogList />} /> */}
