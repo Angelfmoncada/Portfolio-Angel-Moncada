@@ -57,10 +57,10 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   }, [currentText, currentIndex, isDeleting, textArray, once, typingSpeed]);
 
   return (
-    <span className={cn("inline-block", className)}>
+    <div className={cn("inline-block", className)}>
       {currentText}
       <span className="animate-pulse ml-0.5">|</span>
-    </span>
+    </div>
   );
 };
 

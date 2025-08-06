@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, Github, Linkedin, Send, Download, Eye, FileText, X, Code2, MessageSquare } from 'lucide-react';
 import AnimatedCard from './AnimatedCard';
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+// Removed EmailJS dependency - using native mailto solution
 
 // Update contact methods to Angel's email and social profiles
 const contactMethods = [
@@ -95,6 +96,19 @@ const ProfessionalSummary = () => (
       <p className="text-gray-300 text-base mb-8">
         I'm a full‑stack developer and Systems Engineering student with a passion for clean, efficient and visually compelling solutions. I apply my knowledge across software development, databases, networking and infrastructure, and I thrive on new challenges.
       </p>
+      
+      {/* Contact Options Info */}
+      <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-4 mb-8">
+        <h3 className="text-blue-300 font-semibold mb-2 flex items-center gap-2">
+          <MessageSquare size={16} /> Contact Options
+        </h3>
+        <ul className="text-gray-300 text-sm space-y-1">
+          <li>• <strong>Send with Email:</strong> Opens your email client</li>
+          <li>• <strong>Download vCard:</strong> Save my contact</li>
+          <li>• <strong>Copy Info:</strong> Copy my data to clipboard</li>
+        </ul>
+      </div>
+      
             <div className="space-y-4 mb-8">
         {contactMethods.map((method) => (
           <a
@@ -158,47 +172,102 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, reason }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: '82927390-3cc2-4ef8-8ce2-2249f91f37cc',
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          reason: formData.reason,
-          message: formData.message,
-          subject: 'New Contact Form Submission'
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitStatus({
-          type: 'success',
-          message: 'Thank you for your message! I will get back to you soon.'
-        });
-        setFormData({ firstName: '', lastName: '', email: '', reason: '', message: '' });
-      } else {
-        throw new Error(data.message || 'Something went wrong');
-      }
-    } catch (error) {
+    // Required field validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message || !formData.reason) {
       setSubmitStatus({
         type: 'error',
-        message: 'Failed to send message. Please try again later.'
+        message: 'Please complete all required fields.'
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Create email content
+      const emailSubject = `Portfolio Contact - ${formData.reason}`;
+      const emailBody = `Hello Angel,\n\n` +
+        `I'm writing from your portfolio website:\n\n` +
+        `👤 Name: ${formData.firstName} ${formData.lastName}\n` +
+        `📧 Email: ${formData.email}\n` +
+        `🎯 Reason: ${formData.reason}\n\n` +
+        `💬 Message:\n${formData.message}\n\n` +
+        `---\n` +
+        `This message was sent from your contact form.`;
+
+      // Crear el enlace mailto
+      const mailtoLink = `mailto:angelfmoncada.m@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      setSubmitStatus({
+        type: 'success',
+        message: '✅ Your email client has been opened with the pre-filled message. Just send it.'
+      });
+      
+      // Limpiar el formulario
+      setFormData({ firstName: '', lastName: '', email: '', reason: '', message: '' });
+      
+    } catch (error) {
+      console.error('Error opening email client:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Error opening email client. Please copy the information and send an email manually to angelfmoncada.m@gmail.com'
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const downloadContactInfo = () => {
+    // Create vCard file
+    const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Ángel Moncada
+N:Moncada;Ángel;;;
+ORG:Full-Stack Developer
+TITLE:Systems Engineering Student
+EMAIL;TYPE=INTERNET:angelfmoncada.m@gmail.com
+URL:https://github.com/Angelfmoncada
+URL:https://www.linkedin.com/in/angel-moncada
+NOTE:Full-stack developer and Systems Engineering student with a passion for clean, efficient and visually appealing solutions. I apply my knowledge across software development, databases, networking and infrastructure, and I thrive on new challenges.
+END:VCARD`;
+    
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'Angel_Moncada_Contact.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
+  const copyContactInfo = async () => {
+    const contactText = `Ángel Moncada - Full-Stack Developer\n` +
+      `📧 Email: angelfmoncada.m@gmail.com\n` +
+      `🔗 GitHub: https://github.com/Angelfmoncada\n` +
+      `💼 LinkedIn: https://www.linkedin.com/in/angel-moncada\n\n` +
+      `Full-stack developer and Systems Engineering student with a passion for clean, efficient and visually appealing solutions.`;
+    
+    try {
+      await navigator.clipboard.writeText(contactText);
+      setSubmitStatus({
+        type: 'success',
+        message: '📋 Contact information copied to clipboard.'
+      });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Error copying to clipboard. Please select and copy manually.'
+      });
     }
   };
 
@@ -208,7 +277,7 @@ const ContactForm = () => {
         <CardTitle className="text-2xl font-bold text-white">Let's Talk</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={sendEmail} className="space-y-6">
           <div className="flex gap-4">
             <div className="flex-1 space-y-2">
               <label htmlFor="firstName" className="block text-base font-semibold text-white">First Name</label>
@@ -283,13 +352,35 @@ const ContactForm = () => {
               {submitStatus.message}
             </div>
           )}
-          <Button 
-            type="submit" 
-            disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={20} />
-          </Button>
+          <div className="space-y-3">
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Opening email...' : 'Send with Email'} <Send size={20} />
+            </Button>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <Button 
+                type="button"
+                onClick={downloadContactInfo}
+                variant="outline"
+                className="bg-transparent border-2 border-green-600 text-green-400 hover:bg-green-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <Download size={16} /> Download vCard
+              </Button>
+              
+              <Button 
+                type="button"
+                onClick={copyContactInfo}
+                variant="outline"
+                className="bg-transparent border-2 border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <FileText size={16} /> Copy Info
+              </Button>
+            </div>
+          </div>
         </form>
       </CardContent>
     </Card>

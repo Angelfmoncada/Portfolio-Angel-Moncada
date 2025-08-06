@@ -1,125 +1,132 @@
-# 🚀 Professional Portfolio
+# Portfolio de Ángel Moncada
 
-<div align="center">
+## 🚀 Descripción
 
-![Portfolio Preview](https://img.shields.io/badge/Portfolio-Live-blue)
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.3.0-blue)
+Portfolio personal desarrollado con React, TypeScript, Vite y TailwindCSS. Presenta mis proyectos, habilidades y experiencia como desarrollador Full-Stack.
 
-A modern, responsive portfolio website showcasing professional experience, projects, and technical expertise in a clean and interactive interface.
+## ✨ Características
 
-</div>
+- **Diseño Moderno**: Interfaz limpia y profesional con animaciones suaves
+- **Responsive**: Optimizado para todos los dispositivos
+- **Performance**: Construido con Vite para carga rápida
+- **TypeScript**: Tipado estático para mejor mantenibilidad
+- **Componentes UI**: Shadcn/ui y Radix UI para componentes accesibles
+- **Animaciones**: Framer Motion para transiciones fluidas
+- **Formulario de Contacto**: Integración con EmailJS
 
-## ✨ Features
+## 🛠️ Tecnologías
 
-- 🎨 **Responsive Design**: Optimized for all screen sizes and devices
-- 💫 **Modern UI/UX**: Clean and professional interface with smooth animations
-- 🎮 **Interactive Components**: Engaging user interactions and transitions
-- 📝 **Blog System**: Integrated blog platform with markdown support
-- 🏆 **Project Showcase**: Dynamic project display with detailed information
-- 📬 **Contact Section**: Professional contact form with validation
-- 🤖 **AI Lab**: Interactive AI demonstration section
-- 🌙 **Dark Mode**: Elegant dark theme optimized for readability
-
-## 🛠️ Tech Stack
-
-- **Frontend Framework**: React with TypeScript
-- **Styling**: Tailwind CSS with custom animations
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: TailwindCSS, Shadcn/ui, Radix UI
+- **Animaciones**: Framer Motion
+- **Formularios**: EmailJS
+- **Iconos**: Lucide React
+- **Routing**: React Router DOM
 - **State Management**: React Query
-- **Routing**: React Router
-- **Animations**: Framer Motion
-- **UI Components**: Custom components with shadcn/ui
-- **Markdown Support**: React Markdown
-- **Icons**: Lucide Icons
 
-## 🚀 Getting Started
+## 📦 Instalación
 
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/kalpsenghani/portfolio.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd portfolio
-   ```
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-5. Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## 📁 Project Structure
-
-```
-portfolio/
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── pages/         # Page components
-│   ├── lib/           # Utility functions and data
-│   ├── styles/        # Global styles and Tailwind config
-│   └── types/         # TypeScript type definitions
-├── public/            # Static assets
-└── package.json       # Project dependencies and scripts
+1. Clona el repositorio:
+```bash
+git clone <repository-url>
+cd Portfolio-main
 ```
 
-## 🎨 Customization
+2. Instala las dependencias:
+```bash
+npm install
+```
 
-### Adding Projects
-Edit the project data in `src/lib/project-data.ts` to add or modify projects.
+3. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+```
 
-### Modifying Blog Posts
-Update blog content in `src/lib/blog-data.ts` to manage blog posts.
+4. Abre [http://localhost:8080](http://localhost:8080) en tu navegador
 
-### Styling
-The project uses Tailwind CSS for styling. Custom styles can be added in:
-- `src/styles/globals.css`
-- `tailwind.config.js`
+## 🏗️ Scripts Disponibles
 
-## 📦 Deployment
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run preview` - Vista previa de la build de producción
+- `npm run lint` - Ejecuta ESLint para verificar el código
 
-The project can be deployed to any static hosting service:
+## 📁 Estructura del Proyecto
 
-1. Build the project:
-   ```bash
-   npm run build
-   ```
+```
+src/
+├── components/          # Componentes React
+│   ├── ui/             # Componentes UI reutilizables
+│   ├── Hero.tsx        # Sección hero
+│   ├── About.tsx       # Sección sobre mí
+│   ├── Projects.tsx    # Sección de proyectos
+│   ├── Contact.tsx     # Formulario de contacto
+│   └── ...
+├── hooks/              # Custom hooks
+├── lib/                # Utilidades y configuraciones
+├── pages/              # Páginas de la aplicación
+├── types/              # Definiciones de tipos TypeScript
+└── main.tsx           # Punto de entrada
+```
 
-2. Deploy the `dist` directory to your preferred hosting service.
+## 🚀 Deployment
 
-## 🤝 Contributing
+### GitHub Pages
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+1. Construye la aplicación:
+```bash
+npm run build
+```
 
-## 📄 License
+2. Los archivos de producción estarán en la carpeta `dist/`
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+3. Configura GitHub Pages para usar la carpeta `dist/` o sube los archivos a tu hosting preferido
 
-## 📞 Contact
+### Otras Plataformas
 
-For any inquiries or suggestions, please reach out through the contact form on the portfolio website.
+- **Vercel**: Conecta tu repositorio y despliega automáticamente
+- **Netlify**: Arrastra la carpeta `dist/` o conecta tu repositorio
+- **Firebase Hosting**: Usa `firebase deploy` después del build
+
+## 📧 Sistema de Contacto
+
+Este portafolio utiliza un **sistema de contacto nativo** que no requiere configuración de APIs:
+
+### ✨ Características
+- **📨 Envío por Email:** Abre el cliente de correo con mensaje prellenado
+- **📇 Descarga vCard:** Genera archivo de contacto (.vcf)
+- **📋 Copia al Portapapeles:** Copia información de contacto
+
+### 🚀 Ventajas
+- ✅ **Cero configuración** - Funciona inmediatamente
+- ✅ **Sin APIs externas** - No depende de servicios terceros
+- ✅ **Completamente gratis** - Sin límites ni costos
+- ✅ **Privacidad total** - No se envían datos a terceros
+- ✅ **Funciona offline** - Usa tecnologías web nativas
+
+Para más detalles, consulta [CONTACT_SYSTEM.md](./CONTACT_SYSTEM.md)
+
+## 🐛 Correcciones Realizadas
+
+- ✅ Corregida importación de `next-themes` por hook personalizado
+- ✅ Eliminada importación circular en `use-toast.ts`
+- ✅ Creado archivo `blog-data.ts` faltante con interfaz completa
+- ✅ Actualizada configuración de ESLint para compatibilidad
+- ✅ Verificado que todas las dependencias estén correctamente instaladas
+- ✅ Build de producción funcionando sin errores
+- ✅ Servidor de desarrollo estable con HMR
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+## 👨‍💻 Autor
+
+**Ángel Moncada**
+- Email: angelfmoncada.m@gmail.com
+- GitHub: [Tu GitHub]
+- LinkedIn: [Tu LinkedIn]
 
 ---
 
-<div align="center">
-Made with ❤️ by Kalp Senghani
-</div>
+¡Gracias por visitar mi portfolio! 🚀
