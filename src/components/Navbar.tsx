@@ -55,7 +55,7 @@ const Navbar = () => {
             </div>
             {/* Replace default logo with custom AM neon logo for Ángel Moncada */}
             <img 
-              src="/lovable-uploads/AM_logo_neon.svg" 
+              src={`${import.meta.env.BASE_URL}lovable-uploads/AM_logo_neon.svg`} 
               alt="Ángel Moncada Logo" 
               className="h-14 w-14 relative z-10" 
             />

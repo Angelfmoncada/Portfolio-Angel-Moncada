@@ -35,7 +35,7 @@ const Footer = () => {
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
               {/* Replace default logo with Ángel Moncada's neon logo */}
               <img 
-                src="/lovable-uploads/AM_logo_neon.svg" 
+                src={`${import.meta.env.BASE_URL}lovable-uploads/AM_logo_neon.svg`} 
                 alt="Ángel Moncada Logo" 
                 className="h-10 w-10"
               />

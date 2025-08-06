@@ -105,7 +105,7 @@ const microProjectsData = [
   {
     title: "AI Job Advisor",
     description: "A full stack web application that analyzes resumes using AI to provide job role suggestions, resume improvement tips, and interview preparation questions. Upload your resume for AI analysis powered by OpenAI GPT-4, receive personalized recommendations, top job role suggestions, resume tips, and interview questions tailored to your experience. Stores previous analysis results for future reference.",
-    image: "/lovable-uploads/Job-Advisor.png",
+    image: `${import.meta.env.BASE_URL}lovable-uploads/Job-Advisor.png`,
     tags: ["Axios", "OpenAI GPT-4", "React", "Node.js"],
     demoUrl: "https://yourjobadvisor.netlify.app/",
     githubUrl: "https://github.com/angelmoncada/AI_Job_Advisor"

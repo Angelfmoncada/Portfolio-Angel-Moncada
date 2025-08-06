@@ -8,7 +8,7 @@ const projectsData: Project[] = [
     id: 1,
     title: "FocusBuddy",
     description: "Your productivity companion for focused work sessions and task management. A comprehensive productivity application that helps users maintain focus through structured work sessions, task tracking, and progress analytics. Features include customizable focus timers, task organization, progress visualization, and productivity insights to enhance work efficiency.",
-    image: "/lovable-uploads/focusbuddy live.png",
+    image: `${import.meta.env.BASE_URL}lovable-uploads/focusbuddy live.png`,
     tags: ["React", "TypeScript", "Tailwind CSS", "Productivity", "Timer", "Analytics"],
     demoUrl: "https://angelfmoncada.github.io/FocusBuddy/",
     githubUrl: "https://github.com/Angelfmoncada/FocusBuddy"
